@@ -13,6 +13,9 @@ export default function Login({userDetailsFun,userLoginFun}){
         console.log(data);
         setSignup(null);
         userLoginFun(data);
+        const expirationDate = new Date();
+        expirationDate.setTime(expirationDate.getTime() + (60 * 60 * 1000));
+        document.cookie = `userDetails=${JSON.stringify(data)}; expires=${expirationDate.toUTCString()}`;
         reset()
     }
     const [signUp,setSignup]=useState(null);

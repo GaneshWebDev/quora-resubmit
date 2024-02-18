@@ -24,6 +24,16 @@ body{
   margin-right: 10px;
   margin-top: 6px;
 }
+.userProfileRoute{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   width: 90%;
+   padding-left: 10px;
+   padding-right: 10px;
+   padding-bottom: 5px;
+ 
+}
 .profile-div{
   display: flex;
   flex-direction: column;
@@ -36,6 +46,26 @@ body{
   position: absolute;
   border-radius: 5px;
 }
+.spaces-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #F5F4F2;
+  top: 7vh;
+  left: 26%;
+  width: 300px;
+  height: auto;
+  position: absolute;
+  border-radius: 5px;
+}
+.space-nav{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 10px;
+  padding-left: 30px;
+  width: 100%;
+}
 .user-profile{
   display: flex;
   flex-direction: column;
@@ -45,14 +75,11 @@ body{
   border-bottom: 1px solid #d3d3d3;
   font-size: 1.1rem;
 }
-.user-profile i{
+.user-profile .iconProfile{
   margin-top: 10px;
   margin-left: 10px;
 }
-.user-profile span{
-  margin-left: 10px;
-  margin-bottom: 5px;
-}
+
 .other-options{
   display: flex;
   flex-direction: column;
@@ -154,6 +181,9 @@ body{
   background-color: #AA2200;
   height: 50%;
   width: 100%;
+}
+.active i{
+  color:#AA2200;
 }
 .search-logo-question img{
   height: 30px;
@@ -266,6 +296,22 @@ body{
 }
 .post-text{
   font-weight: bold;
+}
+/* answer page styling */
+.answers{
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  margin-top: 10px;
+}
+.main-div{
+  display: flex;
+  justify-content: space-between;
+}
+.btn-answer{
+  border: 1px solid gray;
+  padding: 10px;
+  border-radius: 20px;
 }
 /* home page styling */
 .home{
@@ -574,7 +620,7 @@ body{
   border: none;
   font-size: 1.3rem;
   background-color: #F2F3F5;
-  color: #d3d3d3;
+  color: black;
   margin: 4px;
   border-bottom: 1px solid #d3d3d3;
 }
@@ -780,6 +826,33 @@ body{
   color: red;
   font-size: 0.5rem;
 }
+/* profile styling */
+.profile-container{
+  display: flex;
+  gap:1rem;
+  flex-direction: column;
+  align-items: center;
+  margin-top:3vh;
+}
+.profile-container-div1{
+  display: flex;
+  gap: 2rem;
+}
+.profile-container-div1 i{
+  font-size: 4rem;
+}
+.profile-container-div1-div1{
+  display: flex;
+  gap:0.3rem;
+  flex-direction: column;
+}
+#little-thick-black{
+  color: #454545;
+}
+#light-black{
+  color:#414a4c;
+}
+
 @media screen and (max-width: 1101px) {
   .try-div{
     display: none;
@@ -828,6 +901,9 @@ body{
     background-color: #F5F4F2;
   }
   .profile-div{
+    top: 12vh;
+  }
+  .spaces-div{
     top: 12vh;
   }
   .icon{

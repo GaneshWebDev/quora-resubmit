@@ -1,30 +1,26 @@
 import { useState } from 'react'
 import './App.css';
-import { MyContext } from './context';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Notification from './components/notification';
 import Home from './components/home';
+import Navbar from './components/navbar';
+import Follow from './components/following';
 import Login from './components/login-signup';
-import Navbar from './components/Navbar';
-function HomeWrapper({ userDetials,logout }) {
-  // Wrap the Home component with MyContext.Provider here;
-  return (
-    <MyContext.Provider value={{ userDetials,logout }}>
-      <Home />
-    </MyContext.Provider>
-  );
-}
-function NotificationWrapper({ userDetials,logout }) {
-  // Wrap the Home component with MyContext.Provider here;
-  return (
-    <MyContext.Provider value={{ userDetials,logout }}>
-      <Notification />
-    </MyContext.Provider>
-  );
-}
+import Answer from './components/answer';
+import QuestionBox from './components/question-box';
+import Profile from './components/profile';
 function App() {
   const [userDetials,setUserDetails]=useState(null);
   const [userLogin,setuserLogin]=useState(false);
+  const [addQuestion,setAddQuestion]=useState(false);
+  const [questions,setQuestions]=useState([]);
+  const openDIv=(dis,div)=>{
+    if(div=='add'){
+      setAddQuestion(dis)
+      console.log(dis)
+    }
+    
+  }
   const loginFunction=(data)=>{
     if(userDetials!==null){
       if(data.email===userDetials.email && data.password=== userDetials.password){
@@ -37,20 +33,27 @@ function App() {
     }
      
   }
-  const logoutFunction=()=>{
+  const logoutFunction=(name)=>{
      setUserDetails(null);
      setuserLogin(false);
+     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
   }
+  console.log(questions,'app.js');
   return (
-    <>
-   
+    <div className='App'>
+
       {userLogin?<BrowserRouter>
-         <Routes>
-          <Route path='/' element={<HomeWrapper userDetials={userDetials} logout={logoutFunction}/>} />
-          <Route path='/notification' element={<NotificationWrapper userDetials={userDetials} logout={logoutFunction}/>} />
-         </Routes>
+        <Navbar userDetails={userDetials} logout={logoutFunction} fun={openDIv} />
+        {addQuestion&&<QuestionBox fun={openDIv} setQuestions={setQuestions} questions={questions}/>}
+         {!addQuestion &&<Routes>
+          <Route path='/' element={<Home/>} />
+          <Route path='/following' element={<Follow />}/>
+          <Route path='/notification' element={<Notification/>} />
+          <Route path='/answer' element={<Answer />}/>
+          <Route path='/profile' element={<Profile questions={questions} userDetails={userDetials}/>} />
+         </Routes >}
       </BrowserRouter>:<Login userDetailsFun={setUserDetails} userLoginFun={loginFunction}/>}
-    </>
+    </div>
   )
 }
 

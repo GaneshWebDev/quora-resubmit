@@ -1,17 +1,9 @@
 import { useState } from 'react'
-import QuestionBox from './question-box';
-import Navbar from './Navbar'
 function Home(){
-    const [addQuestion,setAddQuestion]=useState(false);
+    
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
     const [votes,setVotes]=useState(900);
-    const openDIv=(dis,div)=>{
-      if(div=='add'){
-        setAddQuestion(dis)
-        console.log(dis)
-      }
-      
-    }
+    
     function stringFun(string,n){
         return string.length>n?<span>{string.substr(0,n-1)+'...'}</span>:<span>{string}</span>
     }
@@ -63,9 +55,8 @@ function Home(){
     ]
     return(
         <>
-        <Navbar fun={openDIv} page={'home'}/>
-        {addQuestion&&<QuestionBox fun={openDIv}/>}
-        {!addQuestion &&<div className="home">
+       
+        {<div className="home">
         <div className="space">
            <div className='space-title'><i class="fa-solid fa-circle-plus plus-home-icon"></i><span>Create Space</span></div>
            <div className='space-div'>
@@ -121,8 +112,10 @@ function Home(){
                 <div className='foot'>
                     <div className='btnDiv'>
                         <div className='vote-btn'>
-                        <i className="fa-solid fa-arrow-up btnIcon1" onClick={() => { !isButtonDisabled && setVotes(prevVotes => prevVotes + 1); setIsButtonDisabled(true); }}></i>
-                            <span>Upvote  {votes}</span>
+                            <div onClick={() => { !isButtonDisabled && setVotes(prevVotes => prevVotes + 1); setIsButtonDisabled(true); }}>
+                                <i className="fa-solid fa-arrow-up btnIcon1" ></i>
+                                <span>Upvote  {votes}</span>
+                            </div>
                             <i class="fa-solid fa-arrow-down btnIcon2"  onClick={() => { isButtonDisabled && setVotes(prevVotes => prevVotes - 1); setIsButtonDisabled(false); }}></i>
                         </div>
                         <div className='comment-div'>

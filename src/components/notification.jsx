@@ -1,17 +1,7 @@
-
 import { useState } from 'react';
-import Navbar from './Navbar';
 import QuestionBox from './question-box';
 function Notification(){
     const filter=['All Notification','Stories','Questions','Spaces','People updates','Upvotes','Your content','Your profile','Announcements','Earnings','Subscriptions'];
-    const [addQuestion,setAddQuestion]=useState(false);
-    const openDIv=(dis,div)=>{
-      if(div=='add'){
-        setAddQuestion(dis)
-        console.log(dis)
-      }
-      
-    }
     function stringFun(string,n){
         return string.length>n?<span>{string.substr(0,n-1)+'...'}</span>:<span>{string}</span>
     }
@@ -64,8 +54,7 @@ function Notification(){
     };
     return(
         <>
-        <Navbar fun={openDIv} page={'notification'}/>
-        {!addQuestion&&<div className='notification-container'>
+        {<div className='notification-container'>
             <div className='filter-div'>
                 <span  className='title'>Filter</span>
                 <div className='filter-value'>
@@ -96,7 +85,7 @@ function Notification(){
               
             </div>
         </div>}
-        {addQuestion&&<QuestionBox fun={openDIv}/>}
+        
         </>
     )
 }
